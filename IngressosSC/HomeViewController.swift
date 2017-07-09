@@ -18,6 +18,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let ticket = Ticket(ticketName: "Projetc Party", ticketSubname: "Project productions", ticketImage: #imageLiteral(resourceName: "project"), ticketDescription: "Spazio flex eventos", ticketDate: Date(), ticketPrice: 30.00)
+        tickets.append(ticket)
     }
 //    
 //    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -29,8 +31,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ticketCell", for: indexPath)
-            cell.backgroundColor = .black
+        let ticket = tickets[indexPath.row]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ticketCell", for: indexPath) as! TicketCell
+        
+        cell.buildUICell()
+        cell
+//        cell.eventName.text = "Project party"
+        cell.ticketImage.image = ticket.ticketImage
+        
         return cell
     }
 
